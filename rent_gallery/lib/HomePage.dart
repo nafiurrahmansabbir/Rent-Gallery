@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rent_gallery/Details.dart';
+import 'package:rent_gallery/Order.dart';
+
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -58,20 +62,43 @@ class HomePage extends StatelessWidget {
           itemCount: MyItem.length,
           itemBuilder: (context,index){
             return GestureDetector(
-              onTap: (){},
+              onTap: () {
+                // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Details()));
+              },
               child: Container(
                 margin: EdgeInsets.all(10),
                 width: double.infinity,
-                height: 500,
-                child: Image.asset(MyItem[index]['img']!,),
-
-// fdf
-                // Image.asset(MyItem[index]['img']!,fit: BoxFit.fill,),
-                // Image.asset(pic),
-                // Image.network(MyItem[index]['img']!),
+                height: 650,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      MyItem[index]['img']!,
+                    ),
+                    SizedBox(height: 30),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'For Booking ->',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 10), // Add spacing between text and button
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => Details(MyItem[index]['img']!)));
+                            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => Order()));
+                          },
+                          child: Text('click'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-
-
             );
 
 
